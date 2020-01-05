@@ -35,7 +35,7 @@ class RegistrationController {
     });
 
     if (!plan) {
-      return res.status(401).json({ error: 'plano não encontrado' });
+      return res.status(401).json({ error: 'Plan not found' });
     }
 
     const student = await Student.findOne({
@@ -45,7 +45,7 @@ class RegistrationController {
     });
 
     if (!student) {
-      return res.status(401).json({ error: 'aluno não encontrado' });
+      return res.status(401).json({ error: 'Student not found' });
     }
 
     const registrationDate = startOfMonth(new Date());
@@ -75,7 +75,7 @@ class RegistrationController {
     const registration = await Registration.findByPk(req.params.id);
 
     if (!registration) {
-      return res.status(400).json({ error: 'matricula não encontrada!' });
+      return res.status(400).json({ error: 'Register not found' });
     }
 
     const { student_id, plan_id } = req.body;
@@ -87,7 +87,7 @@ class RegistrationController {
     });
 
     if (!plan) {
-      return res.status(401).json({ error: 'plano não encontrado' });
+      return res.status(401).json({ error: 'Plan not found' });
     }
 
     const student = await Student.findOne({
@@ -97,7 +97,7 @@ class RegistrationController {
     });
 
     if (!student) {
-      return res.status(401).json({ error: 'aluno não encontrado' });
+      return res.status(401).json({ error: 'Student not found' });
     }
 
     const registrationDate = startOfMonth(new Date());
@@ -127,7 +127,7 @@ class RegistrationController {
     const registration = await Registration.findByPk(req.params.id);
 
     if (!registration) {
-      return res.status(400).json({ error: 'matricula não encontrada!' });
+      return res.status(400).json({ error: 'Register not found' });
     }
 
     const plan = await Plan.findOne({
@@ -137,7 +137,7 @@ class RegistrationController {
     });
 
     if (!plan) {
-      return res.status(401).json({ error: 'plano não encontrado' });
+      return res.status(401).json({ error: 'Plan not found' });
     }
 
     const student = await Student.findOne({
@@ -147,7 +147,7 @@ class RegistrationController {
     });
 
     if (!student) {
-      return res.status(401).json({ error: 'aluno não encontrado' });
+      return res.status(401).json({ error: 'Student not found' });
     }
 
     await Queue.add(CancellationMail.key, {
