@@ -8,22 +8,19 @@ class CancellationMail {
   }
 
   async handle({ data }) {
-    const { appointment } = data;
+    const { registration, student, plan } = data;
 
     await Mail.sendMail({
-      to: `${appointment.provider.name} <${appointment.provider.email}>`,
+      to: `${student.name} <${student.email}>`,
       subject: 'Matricula cancelada',
       template: 'cancellation',
       context: {
-        provider: appointment.provider.name,
-        user: appointment.user.name,
-        date: format(
-          parseISO(appointment.date),
-          "'dia' dd 'de' MMMM', às' H:mm'h'",
-          {
-            locale: pt,
-          }
-        ),
+        student: student.name,
+        plan: plan.title,
+        duration: plan.duration,
+        total: registration.price,
+        start: registration.start_date,
+        end: registration.end_date,
       },
     });
   }
